@@ -58,3 +58,7 @@ io.sockets.on('connection', function(socket) {
     });
   });
 });
+
+connect.createServer(
+  connect.static(__dirname + '/public')
+).listen(config.get('hover:http_port'));
