@@ -1,0 +1,10 @@
+#!/bin/sh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ENTRY="$DIR/src/index.js" 
+TEMP="$DIR/tmp.js"
+OUTPUT="$DIR/hover-extension/hover.js"
+
+browserify -e $ENTRY -o $TEMP
+uglifyjs $TEMP > $OUTPUT
+rm $TEMP
