@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+browserify -e "$DIR/src/index.js" -o "$DIR/hover-extension/hover.js"
