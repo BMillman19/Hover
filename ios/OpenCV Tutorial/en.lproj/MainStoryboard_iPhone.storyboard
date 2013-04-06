@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="11">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
                 <navigationController id="3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4">
                         <autoresizingMask key="autoresizingMask"/>
@@ -16,13 +15,13 @@
                         <segue destination="12" kind="relationship" relationship="rootViewController" id="19"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-277" y="-188"/>
         </scene>
         <!--Master View Controller - Samples-->
         <scene sceneID="18">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="" title="Samples" id="12" customClass="MasterViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -62,13 +61,13 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="m1u-EC-Yzi"/>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="183" y="-188"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="24">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="" title="Detail" id="21" customClass="DetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -126,13 +125,13 @@
                         <outlet property="sampleIconView" destination="57o-4l-EB2" id="TGT-x2-iuh"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="-182"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="b2s-8I-Qbe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RhH-cl-n91" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Wac-Dj-mok" customClass="VideoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyS-Oc-Y7R">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -191,13 +190,13 @@
                         <outlet property="toggleCameraButton" destination="0cH-Fc-y0H" id="os1-i3-lp3"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RhH-cl-n91" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1249" y="-482"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="kug-rQ-vLf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="THp-Oo-sRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="22w-9U-Oct" customClass="ImageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T0z-Tc-TaG">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -244,6 +243,7 @@
                         <outlet property="takePhotoButton" destination="pLF-ra-4dQ" id="Cka-m4-SXO"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="THp-Oo-sRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1249" y="118"/>
         </scene>
@@ -254,50 +254,6 @@
         <image name="refresh_straight_arrows.png" width="26" height="26"/>
         <image name="switchCamera.png" width="43" height="26"/>
     </resources>
-    <classes>
-        <class className="BaseSampleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseSampleViewController.h"/>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="runOnImageButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="runOnVideoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sampleDescriptionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sampleIconView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ImageViewController" superclassName="BaseSampleViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="presentOptionsView:"/>
-                <relationship kind="action" name="selectAction:"/>
-                <relationship kind="action" name="selectPictureForProcessing:"/>
-                <relationship kind="outlet" name="actionButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="optionsBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="takePhotoButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="VideoViewController" superclassName="BaseSampleViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VideoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="captureReferenceFrame:"/>
-                <relationship kind="action" name="clearReferenceFrame:"/>
-                <relationship kind="action" name="showActionSheet:"/>
-                <relationship kind="action" name="showOptions:"/>
-                <relationship kind="action" name="toggleCameraPressed:"/>
-                <relationship kind="outlet" name="actionSheetButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="captureReferenceFrameButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="options" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="toggleCameraButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

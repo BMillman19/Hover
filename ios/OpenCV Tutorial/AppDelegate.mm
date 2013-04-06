@@ -17,6 +17,7 @@
 #import "ObjectTrackingSample.h"
 #import "DetectTrackSample.h"
 #import "DrawingCanvas.h"
+#import "HoverSample.h"
 
 @implementation AppDelegate
 
@@ -36,6 +37,8 @@
 
     allSamples.push_back([[SampleFacade alloc] initWithSample:  new ROFSample()]);
     allSamples.push_back([[SampleFacade alloc] initWithSample:new DrawingCanvasSample()]);
+    
+    allSamples.push_back([[SampleFacade alloc] initWithSample:new HoverSample()]);
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)

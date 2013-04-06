@@ -15,6 +15,9 @@
 		369F2C2A15C1A4950032BD08 /* ObjectTrackingSampleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 369F2C2915C1A4950032BD08 /* ObjectTrackingSampleIcon.png */; };
 		369F2C2C15C1A5290032BD08 /* FeatureDetectionSampleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 369F2C2B15C1A5290032BD08 /* FeatureDetectionSampleIcon.png */; };
 		369F2C2F15C1AEE50032BD08 /* Globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 369F2C2E15C1AEE50032BD08 /* Globals.cpp */; };
+		3DF66A9217109F7F0033D07C /* HoverClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66A8D17109F7F0033D07C /* HoverClass.cpp */; };
+		3DF66A9317109F7F0033D07C /* HoverSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66A8F17109F7F0033D07C /* HoverSample.cpp */; };
+		3DF66A961710A1390033D07C /* HoverSampleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66A951710A1390033D07C /* HoverSampleIcon.png */; };
 		8A00096F15AD6DF9001EA42D /* OptionCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A00096E15AD6DF9001EA42D /* OptionCell.mm */; };
 		8A00097315AE0F0A001EA42D /* OptionsTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A00097215AE0F09001EA42D /* OptionsTableView.mm */; };
 		8A43889A1595DE5800027D3C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4388681595BC4F00027D3C /* UIKit.framework */; };
@@ -119,6 +122,11 @@
 		369F2C2B15C1A5290032BD08 /* FeatureDetectionSampleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FeatureDetectionSampleIcon.png; sourceTree = "<group>"; };
 		369F2C2D15C1AEDD0032BD08 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		369F2C2E15C1AEE50032BD08 /* Globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Globals.cpp; sourceTree = "<group>"; };
+		3DF66A8D17109F7F0033D07C /* HoverClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HoverClass.cpp; sourceTree = "<group>"; };
+		3DF66A8E17109F7F0033D07C /* HoverClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverClass.h; sourceTree = "<group>"; };
+		3DF66A8F17109F7F0033D07C /* HoverSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HoverSample.cpp; sourceTree = "<group>"; };
+		3DF66A9017109F7F0033D07C /* HoverSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverSample.h; sourceTree = "<group>"; };
+		3DF66A951710A1390033D07C /* HoverSampleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HoverSampleIcon.png; sourceTree = "<group>"; };
 		8A00096D15AD6DF8001EA42D /* OptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionCell.h; sourceTree = "<group>"; };
 		8A00096E15AD6DF9001EA42D /* OptionCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OptionCell.mm; sourceTree = "<group>"; };
 		8A00097115AE0F08001EA42D /* OptionsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsTableView.h; sourceTree = "<group>"; };
@@ -304,6 +312,25 @@
 			name = ObjectTracking;
 			sourceTree = "<group>";
 		};
+		3DF66A8C17109EF10033D07C /* Hover */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66A8D17109F7F0033D07C /* HoverClass.cpp */,
+				3DF66A8E17109F7F0033D07C /* HoverClass.h */,
+				3DF66A8F17109F7F0033D07C /* HoverSample.cpp */,
+				3DF66A9017109F7F0033D07C /* HoverSample.h */,
+				3DF66A951710A1390033D07C /* HoverSampleIcon.png */,
+			);
+			name = Hover;
+			sourceTree = "<group>";
+		};
+		3DF66A971710AA310033D07C /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Gestures;
+			sourceTree = "<group>";
+		};
 		8A4388591595BC4E00027D3C = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +375,7 @@
 				8AFE53D015D7F19100E7ADEB /* OpenCV Neon */,
 				8AA7F84E15A462250052C95A /* View Controllers */,
 				8A723FD81599B751008C72DB /* Storyboards */,
+				3DF66A971710AA310033D07C /* Gestures */,
 				8A43888A1595C1DF00027D3C /* Samples */,
 				8A4388881595BCB000027D3C /* VideoSource */,
 				8A43886F1595BC4F00027D3C /* Supporting Files */,
@@ -390,6 +418,7 @@
 		8A43888A1595C1DF00027D3C /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				3DF66A8C17109EF10033D07C /* Hover */,
 				8A4A123915F68B460096D272 /* DrawingCanvas */,
 				8AB6D04015B856010029641C /* CartoonFilter */,
 				8A4388E41597B6E500027D3C /* Contour Detection */,
@@ -700,6 +729,7 @@
 				8A66F70B15DA3E2600EF1959 /* DefaultSampleIcon~ipad.png in Resources */,
 				8A66F71515DA85BA00EF1959 /* VideoTrackingSampleIcon.png in Resources */,
 				8A4C5D7615E2CAEA008887F0 /* ROFSampleIcon.png in Resources */,
+				3DF66A961710A1390033D07C /* HoverSampleIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +779,8 @@
 				8A4C5D7715E2CAEA008887F0 /* totalvariation.cpp in Sources */,
 				8A4A123D15F68B680096D272 /* DrawingCanvas.cpp in Sources */,
 				8A6E0BD81614946100C1D644 /* FeatureDetectionClass.cpp in Sources */,
+				3DF66A9217109F7F0033D07C /* HoverClass.cpp in Sources */,
+				3DF66A9317109F7F0033D07C /* HoverSample.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
