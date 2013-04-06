@@ -24,3 +24,6 @@ ios/Podfile.lock
 # Mac
 .DS_Store
 
+# node.js
+node_modules
+>>>>>>> Added node_modules to gitignore
