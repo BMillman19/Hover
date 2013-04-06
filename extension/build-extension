@@ -5,6 +5,9 @@ ENTRY="$DIR/src/index.js"
 TEMP="$DIR/tmp.js"
 OUTPUT="$DIR/hover-extension/hover.js"
 
+echo "Linking Dependencies"
 browserify -e $ENTRY -o $TEMP
-uglifyjs $TEMP > $OUTPUT
+echo "Minifying using UglifyJS"
+uglifyjs $TEMP > $OUTPUT 2>/dev/null
+echo "Cleaning up"
 rm $TEMP
