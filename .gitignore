@@ -26,4 +26,3 @@ ios/Podfile.lock
 
 # node.js
 node_modules
->>>>>>> Added node_modules to gitignore
