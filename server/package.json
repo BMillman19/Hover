@@ -1,0 +1,14 @@
+{
+  "name": "hover-server",
+  "version": "0.0.1",
+  "description": "Server component for Hover app",
+  "main": "server.js",
+  "scripts": {},
+  "repository": "https://github.com/BMillman19/Hover",
+  "author": "Kevin Gao",
+  "dependencies": {
+    "socket.io": "~0.9.14",
+    "nconf": "~0.6.7",
+    "connect": "~2.7.4"
+  }
+}

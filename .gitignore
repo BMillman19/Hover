@@ -24,3 +24,5 @@ ios/Podfile.lock
 # Mac
 .DS_Store
 
+# node.js
+node_modules
