@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "hover",
+    "version": "0.0.1",
+    "default_locale": "en",
+    "description": "__MSG_EXT_DESCRIPTION__",
+    "background": {
+        "scripts": [ "background.js" ]
+    },
+    "permissions": [
+        "tabs", "http://*/*",
+        "tabs", "https://*/*"
+    ],
+    "browser_action": {
+        "name": "hover",
+        "default_icon": "hover.png",
+        "default_title": "__MSG_EXT_TITLE__",
+        "icons": [ "hover.png" ]
+    },
+    "content_security_policy": "default-src 'none'; script-src 'self'"
+}
+
+
