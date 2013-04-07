@@ -40,6 +40,9 @@ typedef enum {
 
 - (UIView *)getVideoFeedViewWithRect:(CGRect)rect;
 
+- (void)toggleVoiceMode;
+
+
 
 @property (nonatomic, weak) id<GestureEngineDelegate> delegate;
 

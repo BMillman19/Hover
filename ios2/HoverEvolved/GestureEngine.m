@@ -320,25 +320,34 @@
     [self cleanup];
 }
 
-#pragma mark - SnapEngineDelegate
-
--(void) snapDidOccur {
-    NSLog(@"Snap!");
+- (void)toggleVoiceMode {
     if (!self.voiceEnabled) {
         [self.delegate engineDidSwitchToVoiceMode];
         self.voiceEnabled = YES;
         
         [self.snapEngine stop];
-
+        
         self.topicEngine = [[WinstonTopicEngine alloc] init];
         self.topicEngine.delegate = self;
         [self.topicEngine start];
+    } else {
+        [self.delegate engineDidSwitchToSwipeMode];
+        self.voiceEnabled = NO;
+        
+        [self.topicEngine stop];
+        
+        self.snapEngine = [[SnapEngine alloc] init];
+        self.snapEngine.delegate = self;
+        [self.snapEngine start];
     }
+}
+
+#pragma mark - SnapEngineDelegate
+
+-(void) snapDidOccur {
+    NSLog(@"Snap!");
     
     [self emitGesture:kSnap];
-
-    
-
 
 }
 

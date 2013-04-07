@@ -29,6 +29,7 @@
 @property (nonatomic, strong) IBOutlet UIView *videoContainerView;
 
 @property (nonatomic, copy) NSString *code;
+@property (nonatomic, strong) IBOutlet UIButton *voiceButton;
 @end
 
 @implementation ViewController
@@ -38,6 +39,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.voiceButton addTarget:self action:@selector(voiceButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.voiceButton.alpha= 0.0f;
     
     
     
@@ -143,6 +147,7 @@
                          self.tipView.alpha = 0.0f;
                          self.startIcon.alpha = 0.0f;
                          self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#3498DB" alpha:1.0f];
+                         self.voiceButton.alpha = 1.0f;
                          
                      }
                      completion:^(BOOL finished){
@@ -171,6 +176,7 @@
                          self.videoContainerView.alpha = 0.0f;
                          self.micIcon.alpha = 0.0f;
                          self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#E74C3C" alpha:1.0f];
+                         self.voiceButton.alpha = 0.0f;
                          
                      }
                      completion:^(BOOL finished){
@@ -189,6 +195,10 @@
 
 - (IBAction)testButtonPressed:(id)sender {
     [[GestureEngine sharedEngine] test];
+}
+
+- (IBAction)voiceButtonPressed:(id)sender {
+    [[GestureEngine sharedEngine] toggleVoiceMode];
 }
 
 #pragma mark - ZBarReaderDelegate
