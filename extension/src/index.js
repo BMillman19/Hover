@@ -12,9 +12,6 @@ chrome.extension.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.event == "display_qr") {
     require('./render')(msg.channel);
   }
-  else if (msg.event == "receive_gesture") {
-    if (Reveal) Reveal.next();
-  }
   else if (msg.event == 'update_socket') {
     updateSocket();
   }
@@ -29,10 +26,16 @@ function initSocket(channel) {
                                    server.protocol, server.host, server.port));
   var socket = chrome.socket;
   socket.on('connect', function() {
-    // 1. Create channel with server
+    // Create channel with server
     socket.emit('host_channel', channel);
 
-    // 3. Listen for gestures
+    // On controller connect, close qr modal
+    socket.on('controller_connected', function () {
+      injectCode("var a = document.getElementsByClassName('pico-overlay'); for (var i = 0; i < a.length; i++) { a[i].parentNode.removeChild(a[i]) }");
+      injectCode("var a = document.getElementsByClassName('pico-content'); for (var i = 0; i < a.length; i++) { a[i].parentNode.removeChild(a[i]) }");
+    });
+
+    // Listen for gestures
     socket.on('send_gesture', function(gesture) {
       // just log for now
       console.log(gesture);
