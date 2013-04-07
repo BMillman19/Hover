@@ -10,15 +10,17 @@
 #import "SnapEngine.h"
 #import "NetworkSocket.h"
 #import "GPUImage.h"
+#import "WinstonTopicEngine.h"
 
+@interface GestureEngine () <WinstonTopicEngineDelegate, SnapEngineDelegate, NetworkSocketDelegate>
 
-@interface GestureEngine () <SnapEngineDelegate, NetworkSocketDelegate>
+@property (nonatomic, strong) WinstonTopicEngine *topicEngine;
 @property (nonatomic, strong) SnapEngine *snapEngine;
 @property (nonatomic, strong) NetworkSocket *networkSocket;
-
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 @property (nonatomic, assign) BOOL motionDetected;
 @property (nonatomic, strong) NSMutableArray *motionData;
+@property (nonatomic, assign) BOOL voiceEnabled;
 @end
 
 @implementation GestureEngine
@@ -39,7 +41,7 @@
 {
     self = [super init];
     if (self) {
-    
+        self.voiceEnabled = NO;
     }
     return self;
 }
@@ -65,6 +67,18 @@
 
 - (void)test {
     [self socketDidOpen];
+}
+
+- (void)startVoice {
+    // set up topic engine
+//    self.topicEngine = [[WinstonTopicEngine alloc] init];
+//    self.topicEngine.delegate = self;
+//    [self.topicEngine start];
+    self.voiceEnabled = YES;
+}
+
+- (void)stopVoice {
+    [self.topicEngine stop];
 }
 
 - (UIView *)getVideoFeedViewWithRect:(CGRect)rect {
@@ -107,6 +121,12 @@
 
 }
 
+- (void)emitVoice:(NSString *)voice {
+    if (self.networkSocket) {
+        [self.networkSocket sendEvent:@"send_gesture" withPayload:@{@"payload" : voice}];
+    }
+}
+
 - (void)cleanup {
     if (self.snapEngine) {
         [self.snapEngine stop];
@@ -122,6 +142,10 @@
     if (self.videoCamera) {
         [self.videoCamera stopCameraCapture];
         self.videoCamera = nil;
+    }
+    
+    if (self.topicEngine) {
+        self.topicEngine = nil;
     }
 }
 
@@ -230,17 +254,15 @@
 - (void)socketDidOpen {
     
     // once socket opens start the snap engine
-    self.snapEngine = [[SnapEngine alloc] init];
-    self.snapEngine.delegate = self;
-    [self.snapEngine start];
-    
+//    self.snapEngine = [[SnapEngine alloc] init];
+//    self.snapEngine.delegate = self;
+//    [self.snapEngine start];
+//    
     
     // start video cap
     
     self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
-    
-    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
-    
+
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationLandscapeLeft;
     self.motionDetected = false;
     self.motionData = [[NSMutableArray alloc] init];
@@ -268,6 +290,12 @@
     [self.videoCamera addTarget:detector];
     [self.videoCamera startCameraCapture];
     
+    
+    self.topicEngine = [[WinstonTopicEngine alloc] init];
+    self.topicEngine.delegate = self;
+    [self.topicEngine start];
+
+    
     [self.delegate socketOpened];
 
 }
@@ -286,6 +314,26 @@
 -(void) snapDidOccur {
     [self emitGesture:kSnap];
     NSLog(@"Snap!");
+}
+
+- (void)topicEngine:(WinstonTopicEngine *)engine didFindTopic:(NSString *)topic
+{
+    if (self.voiceEnabled) {
+        [self emitVoice:topic];
+    }
+    [self.delegate voiceRecognized:topic];
+    
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval: 2
+//                                                      target:self
+//                                                    selector:@selector(handleTimer:)
+//                                                    userInfo:nil
+//                                                     repeats:NO];
+}
+
+- (void)handleTimer:(NSTimer *)timer {
+    [self.topicEngine start];
+    [timer invalidate];
+    timer = nil;
 }
 
 @end
