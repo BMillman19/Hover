@@ -1,5 +1,5 @@
 #!/bin/sh
-
+DEBUG=$1
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ENTRY1="$DIR/src/index.js"
 ENTRY2="$DIR/src/background.js"
@@ -12,11 +12,16 @@ function build () {
   OUT=$2
   echo "Building $2"
   echo "Linking Dependencies"
-  browserify -e $1 -o $TEMP
-  echo "Minifying using UglifyJS"
-  uglifyjs $TEMP > $2 2>/dev/null
-  echo "Cleaning up"
-  rm $TEMP
+  if [ "$DEBUG" != "debug" ]; then
+    browserify -e $1 -o $TEMP
+    echo "Minifying using UglifyJS"
+    uglifyjs $TEMP > $2 2>/dev/null
+    echo "Cleaning up"
+    rm $TEMP
+  else
+    browserify -e $1 -o $2
+  fi
+  echo
 }
 
 build $ENTRY1 $OUTPUT1
