@@ -5,7 +5,7 @@
     "default_locale": "en",
     "description": "__MSG_EXT_DESCRIPTION__",
     "background": {
-        "scripts": [ "background.js" ]
+      "scripts": ["background.js"]
     },
     "permissions": [
         "tabs", "http://*/*",
@@ -13,10 +13,16 @@
     ],
     "browser_action": {
         "name": "hover",
-        "default_icon": "hover.png",
+        "default_icon": "hover-inactive.png",
         "default_title": "__MSG_EXT_TITLE__",
-        "icons": [ "hover.png" ]
+        "icons": ["hover.png", "hover-inactive.png"]
     },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["hover-script.js"]
+      }
+    ],
     "content_security_policy": "default-src 'none'; script-src 'self'"
 }
 
