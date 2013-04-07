@@ -14,23 +14,17 @@ module.exports = function(channel) {
     }, false);
 
     // Extract socket.io url
-    var url = format('%s://%s:%d/!%s',
-                     server.protocol,
+    var url = format('%s!%d!%s',
                      server.host,
                      server.port,
                      channel);
                      console.log(url);
 
-    // Add the "OR"
-    var qr = document.createElement('div');
-    qr.style.textAlign = 'center';
-    wrapper.appendChild(qr);
-
     // Now create the QRCode
-    var qr = qrcode(10, 'M');
+    var qr = qrcode(10, 'H');
     qr.addData(url);
     qr.make();
-    wrapper.innerHTML += qr.createImgTag(3);
+    wrapper.innerHTML += qr.createImgTag(6);
 
     var img = wrapper.querySelector('img');
     img.style.margin = '20px auto';

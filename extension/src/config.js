@@ -1,7 +1,7 @@
 module.exports = {
   "hover-server": {
     "protocol": "http",
-    "host": "localhost",
+    "host": "10.190.110.56",
     "port": 8080
   },
   "hover-extension": {
