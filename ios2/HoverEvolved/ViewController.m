@@ -15,8 +15,7 @@
 #import "FontasticIcons.h"
 
 @interface ViewController () <ZBarReaderDelegate, GestureEngineDelegate>
-@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
-@property (nonatomic, strong) GPUImageView *filteredVideoView;
+
 @property (nonatomic, strong) IBOutlet UIView *tipView;
 @property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, strong) IBOutlet FIIconView *startIcon;
@@ -99,32 +98,6 @@
     self.rightIcon.iconColor = [UIColor whiteColor];
     self.rightIcon.icon = [FIEntypoIcon rightIcon];
     self.rightIcon.alpha = 0.0f;
-    
-    ///
-    
-    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
-    
-    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
-    
-    self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-
-    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-	self.filteredVideoView = [[GPUImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, mainScreenFrame.size.width, mainScreenFrame.size.height)];
-    //[self.view addSubview:self.filteredVideoView];
-    
-    
-    GPUImageMotionDetector *detector = [[GPUImageMotionDetector alloc] init];
-    detector.motionDetectionBlock = ^(CGPoint motionCentroid, CGFloat motionIntensity, CMTime frameTime) {
-        if (!isnan(motionCentroid.x) && !isnan(motionCentroid.y)) {
-            NSLog(@"%@", NSStringFromCGPoint(motionCentroid));
-        }
-    };
-    
-    [self.videoCamera addTarget:detector];
-    
-    [self.videoCamera addTarget:self.filteredVideoView];
-    [self.videoCamera startCameraCapture];
-
 
 }
 
@@ -186,7 +159,7 @@
 }
 
 -(IBAction)resetButtonPressed:(id)sender {
-    //[[GestureEngine sharedEngine] reset];
+    [[GestureEngine sharedEngine] reset];
     
     self.voiceMode = NO;
     
@@ -254,9 +227,9 @@
 
 #pragma mark - GestureEngineDelegate
 
-- (void)gestureRecognized:(GestureType)type {
+- (void)gestureRecognized:(GestureType)gesture {
     
-    switch (type) {
+    switch (gesture) {
         case kSnap:
             if (self.voiceMode) {
                 self.voiceMode = NO;
@@ -289,6 +262,10 @@
         default:
             break;
     }
+    
+}
+
+- (void)animateArrow:(GestureType)gesture {
     
 }
 
