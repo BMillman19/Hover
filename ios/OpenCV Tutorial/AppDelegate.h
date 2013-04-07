@@ -19,6 +19,4 @@
 }
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong) SnapEngine *snapEngine;
-
 @end

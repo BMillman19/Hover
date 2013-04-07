@@ -1,0 +1,4 @@
+platform :ios
+
+pod 'socket.IO'
+pod 'JSONKit'

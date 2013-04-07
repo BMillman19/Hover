@@ -10,8 +10,10 @@
 #import "VideoViewController.h"
 #import "ImageViewController.h"
 #import "NSString+StdString.h"
+#import "ZBarReaderViewController.h"
+#import "GestureEngine.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () <ZBarReaderDelegate>
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
@@ -66,8 +68,54 @@
 {
     [super viewDidLoad];
     
+    UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(connectButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = connectButton;
+    
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+}
+
+- (void)connectButtonPressed:(id)sender {
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    // TODO: (optional) additional reader configuration here
+    
+    // EXAMPLE: disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25
+                   config: ZBAR_CFG_ENABLE
+                       to: 0];
+    
+    
+    
+    CGFloat cameraTransformX = 1.0;
+    CGFloat cameraTransformY = 1.12412;
+    
+    reader.cameraViewTransform = CGAffineTransformScale(reader.cameraViewTransform, cameraTransformX, cameraTransformY);
+    
+    // present and release the controller
+    [self presentViewController:reader animated:NO completion:nil];
+}
+
+#pragma mark - ZBarReaderDelegate
+
+- (void)imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info
+{
+    
+    ZBarSymbolSet *symbols = [info objectForKey: ZBarReaderControllerResults];
+    for (ZBarSymbol *symbol in symbols) {
+        //NSLog(symbol.data);
+        NSString* code = symbol.data;
+        
+        [[GestureEngine sharedEngine] enableSocketWithCode:code];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^{}];
+    
+    
+    
 }
 
 - (void)viewDidUnload
