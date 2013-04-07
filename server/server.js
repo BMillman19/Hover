@@ -24,8 +24,9 @@ io.sockets.on('connection', function(socket) {
   // 1. Create new channel using UUID; socket = chrome extension
   socket.on('host_channel', function(channel) {
     // hosts are chrome tabs, clients are controllers
-    channels[channel] = {hosts: [], clients: []};
+    channels[channel] = channels[channel] || {hosts: [], clients: []};
     channels[channel].hosts.push(socket.id);
+    console.log(channels);
   });
 
   // 2. Wait for second client to join; socket = controller
@@ -44,12 +45,15 @@ io.sockets.on('connection', function(socket) {
   //  }
   socket.on('send_gesture', function(gesture) {
     var channel = channels[gesture.channel];
+    console.log(gesture.channel, channels);
     channel.hosts.forEach(function (host) {
+      console.log(host);
       io.sockets.socket(host).emit('send_gesture', gesture.payload);
     });
   });
 
   // Clear up the `channels` array
+  // TODO: fix this for new channel format
   socket.on('disconnect', function() {
     // Remove the channel in which the client just disconnected
     Object.keys(channels).forEach(function(channel) {
