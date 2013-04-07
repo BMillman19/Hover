@@ -13,19 +13,35 @@
 
 class ContourDetectionSample : public SampleBase
 {
-  //! Gets a sample name
-  virtual std::string getName() const;
+public:
+    ContourDetectionSample();
+
+    //! Gets a sample name
+    virtual std::string getName() const;
   
-  virtual std::string getSampleIcon() const;
+    virtual std::string getSampleIcon() const;
   
-  //! Returns a detailed sample description
-  virtual std::string getDescription() const;
+    //! Returns a detailed sample description
+    virtual std::string getDescription() const;
     
-  //! Processes a frame and returns output image 
-  virtual bool processFrame(const cv::Mat& inputFrame, cv::Mat& outputFrame);
+    virtual bool isReferenceFrameRequired() const;
+    
+    //! Sets the reference frame for latter processing
+    virtual void setReferenceFrame(const cv::Mat& reference);
+    
+    // clears reference frame parameters
+    virtual void resetReferenceFrame() const;
+    
+    //! Processes a frame and returns output image 
+    virtual bool processFrame(const cv::Mat& inputFrame, cv::Mat& outputFrame);
 
 private:
-  cv::Mat gray, edges;
+    cv::Mat model, mask, subtracted, gray, edges;
+    
+    bool collectBackground, referenceSet;
+    
+    int collectBackgroundCounter;
+    
 };
 
 #endif

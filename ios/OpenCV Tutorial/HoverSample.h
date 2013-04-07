@@ -8,37 +8,38 @@
 
 #include "SampleBase.h"
 
-struct ctx {
-	CvCapture	*capture;	/* Capture handle */
-	CvVideoWriter	*writer;	/* File recording handle */
-    
-	IplImage	*image;		/* Input image */
-	IplImage	*thr_image;	/* After filtering and thresholding */
-	IplImage	*temp_image1;	/* Temporary image (1 channel) */
-	IplImage	*temp_image3;	/* Temporary image (3 channels) */
-    
-	CvSeq		*contour;	/* Hand contour */
-	CvSeq		*hull;		/* Hand convex hull */
-    
-	CvPoint		hand_center;
-	CvPoint		*fingers;	/* Detected fingers positions */
-	CvPoint		*defects;	/* Convexity defects depth points */
-    
-	CvMemStorage	*hull_st;
-	CvMemStorage	*contour_st;
-	CvMemStorage	*temp_st;
-	CvMemStorage	*defects_st;
-    
-	IplConvKernel	*kernel;	/* Kernel for morph operations */
-    
-	int		num_fingers;
-	int		hand_radius;
-	int		num_defects;
-};
 
 class HoverSample : public SampleBase
 {
 public:
+    
+    struct ctx {
+        CvCapture	*capture;	/* Capture handle */
+        CvVideoWriter	*writer;	/* File recording handle */
+        
+        IplImage	*image;		/* Input image */
+        IplImage	*thr_image;	/* After filtering and thresholding */
+        IplImage	*temp_image1;	/* Temporary image (1 channel) */
+        IplImage	*temp_image3;	/* Temporary image (3 channels) */
+        
+        CvSeq		*contour;	/* Hand contour */
+        CvSeq		*hull;		/* Hand convex hull */
+        
+        CvPoint		hand_center;
+        CvPoint		*fingers;	/* Detected fingers positions */
+        CvPoint		*defects;	/* Convexity defects depth points */
+        
+        CvMemStorage	*hull_st;
+        CvMemStorage	*contour_st;
+        CvMemStorage	*temp_st;
+        CvMemStorage	*defects_st;
+        
+        IplConvKernel	*kernel;	/* Kernel for morph operations */
+        
+        int		num_fingers;
+        int		hand_radius;
+        int		num_defects;
+    };
     HoverSample();
     
     //! Gets a sample name
@@ -75,12 +76,15 @@ private:
     // optical flow options
     int m_maxCorners;
     
-    ctx ctxStruct;
+    ctx *ctxStruct;
     
-    void filter_and_threshold();
-    void find_contour();
-    void find_convex_hull();
-    void find_fingers();
+    bool firstTime;
+    
+    void filter_and_threshold() const;
+    void find_contour() const;
+    void find_convex_hull() const;
+    void find_fingers() const;
+    void display() const;
 };
 
 #endif
