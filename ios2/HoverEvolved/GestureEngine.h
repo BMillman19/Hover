@@ -12,6 +12,8 @@ typedef enum {
     kSnap,
     kLeftSwipe,
     kRightSwipe,
+    kLeftLongSwipe,
+    kRightLongSwipe,
     kUpSwipe,
     kDownSwipe
 } GestureType;

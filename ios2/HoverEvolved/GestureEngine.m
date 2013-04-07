@@ -89,6 +89,12 @@
         case kRightSwipe:
             keyword = @"right";
             break;
+        case kLeftLongSwipe:
+            keyword = @"left_long";
+            break;
+        case kRightLongSwipe:
+            keyword = @"right_long";
+            break;
         case kUpSwipe:
             keyword = @"up";
             break;
@@ -140,6 +146,10 @@
 
 
 - (void) processMotionData {
+    
+    if (self.voiceEnabled)
+        return;
+        
     int window = 2;
     if (self.motionData.count < window * 3) {
         return;
@@ -192,16 +202,33 @@
     double totalChangeX = fabs(delta_x);
     double totalChangeY = fabs(delta_y);
     
+    int longThreshold = 20;
+    bool longSwipe = self.motionData.count > longThreshold;
+    
     //NSLog(@"%f, %f", totalChangeX, totalChangeY);
     
     if ( totalChangeX > totalChangeY) {
         if (delta_x > 0) {
-            NSLog(@"RIGHT");
-            [self emitGesture:kRightSwipe];
+            if (longSwipe) {
+                NSLog(@"LONG_RIGHT");
+
+                [self emitGesture:kRightLongSwipe];
+            } else {
+                NSLog(@"RIGHT");
+
+                [self emitGesture:kRightSwipe];
+            }
         }
         else {
-            NSLog(@"LEFT");
-            [self emitGesture:kLeftSwipe];
+            if (longSwipe) {
+                NSLog(@"LONG_LEFT");
+
+                [self emitGesture:kLeftLongSwipe];
+            } else {
+                NSLog(@"LEFT");
+
+                [self emitGesture:kLeftSwipe];
+            }
         }
         //        // Up/Down swipe
         //        if ((head1Val_x + head2Val_x)/2 < ((tail1Val_x + tail2Val_x)/2)) {
@@ -280,9 +307,6 @@
     [self.videoCamera startCameraCapture];
     
     
-    
-
-    
     [self.delegate socketOpened];
 
 }
@@ -299,15 +323,23 @@
 #pragma mark - SnapEngineDelegate
 
 -(void) snapDidOccur {
-    [self emitGesture:kSnap];
     NSLog(@"Snap!");
-    [self.delegate engineDidSwitchToVoiceMode];
+    if (!self.voiceEnabled) {
+        [self.delegate engineDidSwitchToVoiceMode];
+        self.voiceEnabled = YES;
+        
+        [self.snapEngine stop];
+
+        self.topicEngine = [[WinstonTopicEngine alloc] init];
+        self.topicEngine.delegate = self;
+        [self.topicEngine start];
+    }
     
-    [self.snapEngine stop];
-    self.voiceEnabled = YES;
-    self.topicEngine = [[WinstonTopicEngine alloc] init];
-    self.topicEngine.delegate = self;
-    [self.topicEngine start];
+    [self emitGesture:kSnap];
+
+    
+
+
 }
 
 - (void)topicEngine:(WinstonTopicEngine *)engine didFindTopic:(NSString *)topic
@@ -315,14 +347,15 @@
     if (self.voiceEnabled) {
         if ([topic isEqualToString:@"back"]) {
             [self.delegate engineDidSwitchToSwipeMode];
+            self.voiceEnabled = NO;
             
             [self.topicEngine stop];
             
             self.snapEngine = [[SnapEngine alloc] init];
             self.snapEngine.delegate = self;
             [self.snapEngine start];
-            self.voiceEnabled = NO;
             return;
+            
         }
         [self emitVoice:topic];
         [self.delegate voiceRecognized:topic];

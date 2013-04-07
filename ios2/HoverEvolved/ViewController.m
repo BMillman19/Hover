@@ -29,7 +29,6 @@
 @property (nonatomic, strong) IBOutlet UIView *videoContainerView;
 
 @property (nonatomic, copy) NSString *code;
-@property (nonatomic, assign) BOOL voiceMode;
 @end
 
 @implementation ViewController
@@ -41,7 +40,6 @@
     [super viewDidLoad];
     
     
-    self.voiceMode = NO;
     
     self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#E74C3C" alpha:1.0f];
     [MLPSpotlight addSpotlightInView:self.backgroundView atPoint:self.backgroundView.center];
@@ -164,7 +162,6 @@
 -(IBAction)resetButtonPressed:(id)sender {
     [[GestureEngine sharedEngine] reset];
     
-    self.voiceMode = NO;
     
     [UIView animateWithDuration:0.5f
                           delay:0.0f
@@ -256,7 +253,6 @@
 }
 
 - (void)engineDidSwitchToSwipeMode {
-    self.voiceMode = NO;
     [UIView animateWithDuration:0.5f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
@@ -271,7 +267,6 @@
 }
 
 - (void)engineDidSwitchToVoiceMode {
-    self.voiceMode = YES;
     [UIView animateWithDuration:0.5f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
@@ -286,11 +281,6 @@
 }
 
 - (void)gestureRecognized:(GestureType)gesture {
-    
-    if (gesture == kSnap) {
-    } else {
-    }
-
     
 }
 
