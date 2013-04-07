@@ -67,6 +67,12 @@
     [self socketDidOpen];
 }
 
+- (UIView *)getVideoFeedViewWithRect:(CGRect)rect {
+    GPUImageView *filteredVideoView = [[GPUImageView alloc] initWithFrame:rect];
+    [self.videoCamera addTarget:filteredVideoView];
+    return filteredVideoView;
+}
+
 - (void)emitGesture:(GestureType)gesture {
     NSString *keyword;
     
@@ -108,6 +114,8 @@
     }
     
     if (self.networkSocket) {
+        self.networkSocket.delegate = nil;
+        [self.networkSocket close];
         self.networkSocket = nil;
     }
     
@@ -175,12 +183,12 @@
     
     if ( totalChangeX > totalChangeY) {
         if (delta_x > 0) {
-            NSLog(@"UP");
-            [self emitGesture:kUpSwipe];
+            NSLog(@"RIGHT");
+            [self emitGesture:kRightSwipe];
         }
         else {
-            NSLog(@"DOWN");
-            [self emitGesture:kDownSwipe];
+            NSLog(@"LEFT");
+            [self emitGesture:kLeftSwipe];
         }
         //        // Up/Down swipe
         //        if ((head1Val_x + head2Val_x)/2 < ((tail1Val_x + tail2Val_x)/2)) {
@@ -192,12 +200,12 @@
         //        }
     } else if (totalChangeX < totalChangeY) {
         if (delta_y > 0) {
-            NSLog(@"RIGHT");
-            [self emitGesture:kRightSwipe];
+            NSLog(@"DOWN");
+            [self emitGesture:kDownSwipe];
         }
         else {
-            NSLog(@"LEFT");
-            [self emitGesture:kLeftSwipe];
+            NSLog(@"UP");
+            [self emitGesture:kUpSwipe];
         }
         //        // Left/Right swipe
         //        if ((head1Val_y + head2Val_y)/2 < ((tail1Val_y + tail2Val_y)/2)) {
@@ -233,7 +241,7 @@
     
     self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront];
     
-    self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    self.videoCamera.outputImageOrientation = UIInterfaceOrientationLandscapeLeft;
     self.motionDetected = false;
     self.motionData = [[NSMutableArray alloc] init];
     
@@ -259,6 +267,8 @@
     };
     [self.videoCamera addTarget:detector];
     [self.videoCamera startCameraCapture];
+    
+    [self.delegate socketOpened];
 
 }
 

@@ -19,6 +19,7 @@ typedef enum {
 @protocol GestureEngineDelegate <NSObject>
 
 - (void)gestureRecognized:(GestureType)type;
+- (void)socketOpened;
 
 @end
 
@@ -31,6 +32,8 @@ typedef enum {
 - (void)reset;
 
 - (void)test;
+
+- (UIView *)getVideoFeedViewWithRect:(CGRect)rect;
 
 @property (nonatomic, weak) id<GestureEngineDelegate> delegate;
 
