@@ -6,15 +6,10 @@ var uuid = require('node-uuid'),
 // Toggle Hover on icon click
 chrome.browserAction.onClicked.addListener(function() {
   toggleHover();
-  chrome.tabs.executeScript(null, {
-    file: 'hover.js'
-  });
-});
-
-// Update tabs on changing tabs
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-  chrome.tabs.executeScript(activeInfo.tabId, {
-    file: 'hover.js'
+  chrome.tabs.getAllInWindow(null, function(tabs){
+    for (var i = 0; i < tabs.length; i++) {
+      chrome.tabs.sendMessage(tabs[i].id, {event: 'update_socket'});
+    }
   });
 });
 
@@ -25,6 +20,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
               "from the extension");
   if (request.event == 'is_active?') {
     sendResponse(hover);
+  }
+  else if (request.event == 'send_gesture') {
+    chrome.tabs.executeScript(null, {
+      code: 'Reveal.next();'
+    });
   }
 });
 
