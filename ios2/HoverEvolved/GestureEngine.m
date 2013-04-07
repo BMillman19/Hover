@@ -69,17 +69,6 @@
     [self socketDidOpen];
 }
 
-- (void)startVoice {
-    // set up topic engine
-//    self.topicEngine = [[WinstonTopicEngine alloc] init];
-//    self.topicEngine.delegate = self;
-//    [self.topicEngine start];
-    self.voiceEnabled = YES;
-}
-
-- (void)stopVoice {
-    [self.topicEngine stop];
-}
 
 - (UIView *)getVideoFeedViewWithRect:(CGRect)rect {
     GPUImageView *filteredVideoView = [[GPUImageView alloc] initWithFrame:rect];
@@ -254,10 +243,10 @@
 - (void)socketDidOpen {
     
     // once socket opens start the snap engine
-//    self.snapEngine = [[SnapEngine alloc] init];
-//    self.snapEngine.delegate = self;
-//    [self.snapEngine start];
-//    
+    self.snapEngine = [[SnapEngine alloc] init];
+    self.snapEngine.delegate = self;
+    [self.snapEngine start];
+    
     
     // start video cap
     
@@ -291,9 +280,7 @@
     [self.videoCamera startCameraCapture];
     
     
-    self.topicEngine = [[WinstonTopicEngine alloc] init];
-    self.topicEngine.delegate = self;
-    [self.topicEngine start];
+    
 
     
     [self.delegate socketOpened];
@@ -314,26 +301,33 @@
 -(void) snapDidOccur {
     [self emitGesture:kSnap];
     NSLog(@"Snap!");
+    [self.delegate engineDidSwitchToVoiceMode];
+    
+    [self.snapEngine stop];
+    self.voiceEnabled = YES;
+    self.topicEngine = [[WinstonTopicEngine alloc] init];
+    self.topicEngine.delegate = self;
+    [self.topicEngine start];
 }
 
 - (void)topicEngine:(WinstonTopicEngine *)engine didFindTopic:(NSString *)topic
 {
     if (self.voiceEnabled) {
+        if ([topic isEqualToString:@"back"]) {
+            [self.delegate engineDidSwitchToSwipeMode];
+            
+            [self.topicEngine stop];
+            
+            self.snapEngine = [[SnapEngine alloc] init];
+            self.snapEngine.delegate = self;
+            [self.snapEngine start];
+            self.voiceEnabled = NO;
+            return;
+        }
         [self emitVoice:topic];
+        [self.delegate voiceRecognized:topic];
     }
-    [self.delegate voiceRecognized:topic];
-    
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval: 2
-//                                                      target:self
-//                                                    selector:@selector(handleTimer:)
-//                                                    userInfo:nil
-//                                                     repeats:NO];
 }
 
-- (void)handleTimer:(NSTimer *)timer {
-    [self.topicEngine start];
-    [timer invalidate];
-    timer = nil;
-}
 
 @end

@@ -164,10 +164,6 @@
 -(IBAction)resetButtonPressed:(id)sender {
     [[GestureEngine sharedEngine] reset];
     
-    if (self.voiceMode) {
-        [[GestureEngine sharedEngine] stopVoice];
-    }
-    
     self.voiceMode = NO;
     
     [UIView animateWithDuration:0.5f
@@ -256,47 +252,43 @@
 }
 
 - (void)voiceRecognized:(NSString *)voice {
-    if ([voice isEqualToString:@"voice"]) {
-        if (self.voiceMode) {
-            self.voiceMode = NO;
-            [UIView animateWithDuration:0.5f
-                                  delay:0.0f
-                                options:UIViewAnimationOptionCurveLinear
-                             animations:^{
-                                 self.micIcon.alpha = 0.0f;
-                                 self.videoContainerView.alpha = 1.0f;
-                                 self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#3498DB" alpha:1.0f];
-                                 [[GestureEngine sharedEngine] stopVoice];
-                                 
-                             }
-                             completion:^(BOOL finished){}
-             ];
-            
-        } else {
-            self.voiceMode = YES;
-            [UIView animateWithDuration:0.5f
-                                  delay:0.0f
-                                options:UIViewAnimationOptionCurveLinear
-                             animations:^{
-                                 self.micIcon.alpha = 1.0f;
-                                 self.videoContainerView.alpha = 0.0f;
-                                 self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#1ABC9C" alpha:1.0f];
-                                 [[GestureEngine sharedEngine] startVoice];
-                                 
-                             }
-                             completion:^(BOOL finished){}
-             ];
-        }
 
-    }
+}
+
+- (void)engineDidSwitchToSwipeMode {
+    self.voiceMode = NO;
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.micIcon.alpha = 0.0f;
+                         self.videoContainerView.alpha = 1.0f;
+                         self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#3498DB" alpha:1.0f];
+                         
+                     }
+                     completion:^(BOOL finished){}
+     ];
+}
+
+- (void)engineDidSwitchToVoiceMode {
+    self.voiceMode = YES;
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.micIcon.alpha = 1.0f;
+                         self.videoContainerView.alpha = 0.0f;
+                         self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#1ABC9C" alpha:1.0f];
+                         
+                     }
+                     completion:^(BOOL finished){}
+     ];
 }
 
 - (void)gestureRecognized:(GestureType)gesture {
     
     if (gesture == kSnap) {
-        
     } else {
-        //[self animateArrow:gesture];
     }
 
     
