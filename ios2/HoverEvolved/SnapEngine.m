@@ -45,14 +45,15 @@ double prevPeak = -200;
 	[recorder updateMeters];
     double currPeak = [recorder peakPowerForChannel:0];
     
-    //	NSLog(@"Average input: %f Peak input: %f Low pass results: %f", average, peak, lowPassResults);
-    
-    if (peakDetected && (abs(prevPeak) - abs(currPeak))) {
+    // NSLog(@"%f", currPeak);
+    // if (peakDetected && (abs(prevPeak) - abs(currPeak))) {
+
+    if (peakDetected && (abs(prevPeak) - abs(currPeak) < -0.5)) {
         peakDetected = false;
     } else if ((currPeak > -0.000003) && !peakDetected) {
         peakDetected = true;
         [self.delegate snapDidOccur];
-        //NSLog(@"SNAP DETECTED!");
+//        NSLog(@"SNAP DETECTED!");
     }
 
     prevPeak = currPeak;
