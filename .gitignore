@@ -20,6 +20,8 @@ DerivedData
 # CocoaPods
 ios/Pods
 ios/Podfile.lock
+ios2/Pods
+ios2/Podfile.lock
 
 # Mac
 .DS_Store
