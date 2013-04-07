@@ -21,11 +21,33 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.event == 'is_active?') {
     sendResponse(hover);
   }
-  else if (request.event == 'send_gesture') {
-    chrome.tabs.executeScript(null, {
-      code: 'Reveal.next();'
+  else if (request.event == 'am_i_selected?') {
+    // return {selected: current tab is selected}
+    chrome.tabs.getSelected(function (tab) {
+      sendResponse({selected: tab.id == sender.tab.id});
     });
   }
+  // on long swipe, switch tabs
+  else if (request.event == 'tab_gesture') {
+    // "natural movement" left long -> next tab
+    var direction = (request.gesture == 'left_long') ? 1 : -1;
+    // get all tabs to locate current tab and surrounding tabs
+    chrome.tabs.getAllInWindow(null, function (tabs) {
+      chrome.tabs.getSelected(function (selectedTab) {
+        console.log(tabs, selectedTab);
+        // locate current tab, and go to next tab)
+        for (var i = 0; i < tabs.length; i++) {
+          if (tabs[i].id == selectedTab.id) {
+            console.log('next tab: ', tabs[(i + direction) % tabs.length]);
+            chrome.tabs.update(tabs[(i + direction) % tabs.length].id,
+                               {selected: true});
+            break;
+          }
+        }
+      });
+    });
+  }
+  return true;
 });
 
 function toggleHover() {

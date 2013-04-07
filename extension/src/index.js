@@ -25,6 +25,7 @@ function initSocket(channel) {
   chrome.socket = io.connect(format("%s://%s:%d/",
                                    server.protocol, server.host, server.port));
   var socket = chrome.socket;
+  socket.channel = channel;
   socket.on('connect', function() {
     // Create channel with server
     socket.emit('host_channel', channel);
@@ -37,10 +38,16 @@ function initSocket(channel) {
 
     // Listen for gestures
     socket.on('send_gesture', function(gesture) {
-      // just log for now
-      console.log(gesture);
-      injectCode('if (HOVER_APP) { var fn = HOVER_APP["' + gesture + '"] || function() {}; fn(); }');
-      chrome.runtime.sendMessage({event: 'send_gesture', gesture: gesture}, function (resp) {
+      // ask if current tab is selected (and only act on gestures if it is)
+      chrome.runtime.sendMessage({event: 'am_i_selected?'}, function (resp) {
+        console.log(gesture);
+        if (resp.selected) {
+          // if long swipe, send it back to the background extension
+          if (gesture == 'left_long' || gesture == 'right_long') {
+            chrome.runtime.sendMessage({event: 'tab_gesture', gesture: gesture}, function (resp) { });
+          }
+          injectCode('if (HOVER_APP) { var fn = HOVER_APP["' + gesture + '"] || function() {}; fn(); }');
+        }
       });
     });
   });
