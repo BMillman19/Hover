@@ -33,8 +33,12 @@ io.sockets.on('connection', function(socket) {
   socket.on('join_channel', function(channel) {
     // If control is connected first, create a new channel
     channels[channel] = channels[channel] || {hosts: [], clients: []};
-    channels[channel].clients.push(socket.id);
-    console.log('Channel [' + channel + '] connected:', channels[channel]);
+    var c = channels[channel];
+    c.clients.push(socket.id);
+    console.log('Channel [' + channel + '] connected:', c);
+    c.hosts.forEach(function (host) {
+      io.sockets.socket(host).emit('controller_connected');
+    });
   });
 
   // 3. Pipe gestures through from the controller to the extension; socket = controller
