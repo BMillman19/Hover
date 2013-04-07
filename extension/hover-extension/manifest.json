@@ -20,7 +20,7 @@
     "content_scripts": [
       {
         "matches": ["http://*/*", "https://*/*"],
-        "js": ["hover-script.js"]
+        "js": ["socket.io.min.js", "hover.js"]
       }
     ],
     "content_security_policy": "default-src 'none'; script-src 'self'"

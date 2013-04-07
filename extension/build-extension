@@ -1,13 +1,23 @@
 #!/bin/sh
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ENTRY="$DIR/src/index.js" 
+ENTRY1="$DIR/src/index.js"
+ENTRY2="$DIR/src/background.js"
+OUTPUT1="$DIR/hover-extension/hover.js"
+OUTPUT2="$DIR/hover-extension/background.js"
 TEMP="$DIR/tmp.js"
-OUTPUT="$DIR/hover-extension/hover.js"
 
-echo "Linking Dependencies"
-browserify -e $ENTRY -o $TEMP
-echo "Minifying using UglifyJS"
-uglifyjs $TEMP > $OUTPUT 2>/dev/null
-echo "Cleaning up"
-rm $TEMP
+function build () {
+  IN=$1
+  OUT=$2
+  echo "Building $2"
+  echo "Linking Dependencies"
+  browserify -e $1 -o $TEMP
+  echo "Minifying using UglifyJS"
+  uglifyjs $TEMP > $2 2>/dev/null
+  echo "Cleaning up"
+  rm $TEMP
+}
+
+build $ENTRY1 $OUTPUT1
+build $ENTRY2 $OUTPUT2

@@ -16,22 +16,23 @@ var config = require('nconf').
  *  3. Each channel pipes gestures through from the controller to the extension
  * `channels` object:
  *  {
- *    'UUID': [ client1, client2 ],
- *    'UUID2': [ client3, client4 ]
+ *    'UUID': {hosts: [tab1, tab2], clients: [controller1, controller2]},
+ *    'UUID2': {hosts: [tab3, tab4], clients: [controller3, controller4]}
  *  }
  */
 io.sockets.on('connection', function(socket) {
   // 1. Create new channel using UUID; socket = chrome extension
-  socket.on('create_channel', function(channel) {
-      channels[channel] = [];
-      channels[channel].push(socket.id);
+  socket.on('host_channel', function(channel) {
+    // hosts are chrome tabs, clients are controllers
+    channels[channel] = {hosts: [], clients: []};
+    channels[channel].hosts.push(socket.id);
   });
 
   // 2. Wait for second client to join; socket = controller
   socket.on('join_channel', function(channel) {
     // If control is connected first, create a new channel
-    channels[channel] = channels[channel] || [];
-    channels[channel].push(socket.id);
+    channels[channel] = channels[channel] || {hosts: [], clients: []};
+    channels[channel].clients.push(socket.id);
     console.log('Channel [' + channel + '] connected:', channels[channel]);
   });
 
@@ -43,8 +44,9 @@ io.sockets.on('connection', function(socket) {
   //  }
   socket.on('send_gesture', function(gesture) {
     var channel = channels[gesture.channel];
-    var target = channel[0];  // first client in channel should be the extension
-    io.sockets.socket(target).emit('send_gesture', gesture.payload);
+    channel.hosts.forEach(function (host) {
+      io.sockets.socket(host).emit('send_gesture', gesture.payload);
+    });
   });
 
   // Clear up the `channels` array
