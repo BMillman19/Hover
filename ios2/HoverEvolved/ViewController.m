@@ -26,6 +26,7 @@
 @property (nonatomic, strong) IBOutlet FIIconView *leftIcon;
 @property (nonatomic, strong) IBOutlet FIIconView *rightIcon;
 @property (nonatomic, strong) IBOutlet FIIconView *resetIcon;
+@property (nonatomic, strong) IBOutlet UIView *videoContainerView;
 
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, assign) BOOL voiceMode;
@@ -98,6 +99,8 @@
     self.rightIcon.iconColor = [UIColor whiteColor];
     self.rightIcon.icon = [FIEntypoIcon rightIcon];
     self.rightIcon.alpha = 0.0f;
+    
+    [GestureEngine sharedEngine].delegate = self;
 
 }
 
@@ -133,8 +136,8 @@
 }
 
 -(IBAction)startButtonPressed:(id)sender {
-    //[[GestureEngine sharedEngine] enableSocketWithCode:self.code];
-    [[GestureEngine sharedEngine] test];
+    [[GestureEngine sharedEngine] enableSocketWithCode:self.code];
+    //[[GestureEngine sharedEngine] test];
     [UIView animateWithDuration:0.5f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
@@ -161,6 +164,10 @@
 -(IBAction)resetButtonPressed:(id)sender {
     [[GestureEngine sharedEngine] reset];
     
+    if (self.voiceMode) {
+        [[GestureEngine sharedEngine] stopVoice];
+    }
+    
     self.voiceMode = NO;
     
     [UIView animateWithDuration:0.5f
@@ -168,6 +175,8 @@
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          self.resetIcon.alpha = 0.0f;
+                         self.videoContainerView.alpha = 0.0f;
+                         self.micIcon.alpha = 0.0f;
                          self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#E74C3C" alpha:1.0f];
                          
                      }
@@ -231,47 +240,71 @@
 
 #pragma mark - GestureEngineDelegate
 
+- (void)socketOpened {
+    UIView *videoView = [[GestureEngine sharedEngine] getVideoFeedViewWithRect:self.videoContainerView.bounds];
+    [self.videoContainerView addSubview:videoView];
+    
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.videoContainerView.alpha = 1.0f;
+                         
+                     }
+                     completion:^(BOOL finished){}
+     ];
+}
+
+- (void)voiceRecognized:(NSString *)voice {
+    if ([voice isEqualToString:@"voice"]) {
+        if (self.voiceMode) {
+            self.voiceMode = NO;
+            [UIView animateWithDuration:0.5f
+                                  delay:0.0f
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 self.micIcon.alpha = 0.0f;
+                                 self.videoContainerView.alpha = 1.0f;
+                                 self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#3498DB" alpha:1.0f];
+                                 [[GestureEngine sharedEngine] stopVoice];
+                                 
+                             }
+                             completion:^(BOOL finished){}
+             ];
+            
+        } else {
+            self.voiceMode = YES;
+            [UIView animateWithDuration:0.5f
+                                  delay:0.0f
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 self.micIcon.alpha = 1.0f;
+                                 self.videoContainerView.alpha = 0.0f;
+                                 self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#1ABC9C" alpha:1.0f];
+                                 [[GestureEngine sharedEngine] startVoice];
+                                 
+                             }
+                             completion:^(BOOL finished){}
+             ];
+        }
+
+    }
+}
+
 - (void)gestureRecognized:(GestureType)gesture {
     
-    switch (gesture) {
-        case kSnap:
-            if (self.voiceMode) {
-                self.voiceMode = NO;
-                [UIView animateWithDuration:0.5f
-                                      delay:0.0f
-                                    options:UIViewAnimationOptionCurveLinear
-                                 animations:^{
-                                     self.micIcon.alpha = 0.0f;
-                                     self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#3498DB" alpha:1.0f];
-                                     
-                                 }
-                                 completion:^(BOOL finished){}
-                 ];
-
-            } else {
-                self.voiceMode = YES;
-                [UIView animateWithDuration:0.5f
-                                      delay:0.0f
-                                    options:UIViewAnimationOptionCurveLinear
-                                 animations:^{
-                                     self.micIcon.alpha = 1.0f;
-                                     self.backgroundView.backgroundColor = [UIColor colorWithHex:@"#1ABC9C" alpha:1.0f];
-                                     
-                                 }
-                                 completion:^(BOOL finished){}
-                ];
-            }
-            break;
-            
-        default:
-            break;
+    if (gesture == kSnap) {
+        
+    } else {
+        //[self animateArrow:gesture];
     }
+
     
 }
 
 - (void)animateArrow:(GestureType)gesture {
     
-    FIIconView *viewToBeAnimated;
+    UIView *viewToBeAnimated;
     CGPoint newCenter;
     
     switch (gesture) {
@@ -299,15 +332,15 @@
     [UIView animateWithDuration:0.5f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         viewToBeAnimated.alpha = 1.0f;
-                         viewToBeAnimated.center = newCenter;
+                        animations:^{
+                            viewToBeAnimated.alpha = 1.0f;
+                            viewToBeAnimated.center = newCenter;
                          
-                     }
-                     completion:^(BOOL finished){
-                         viewToBeAnimated.alpha = 0.0f;
-                         viewToBeAnimated.center = origCenter;
-                     }
+                        }
+                        completion:^(BOOL finished){
+                            viewToBeAnimated.alpha = 0.0f;
+                            viewToBeAnimated.center = origCenter;
+                        }
      ];
 }
 

@@ -26,6 +26,10 @@
 		3DF66B35171140740033D07C /* noisy_grid_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66B31171140740033D07C /* noisy_grid_@2X.png */; };
 		3DF66B36171140740033D07C /* noisy_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66B32171140740033D07C /* noisy_grid.png */; };
 		3DF66B3A171149FE0033D07C /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66B39171149FE0033D07C /* UIColor+CreateMethods.m */; };
+		3DF66B3D171186AE0033D07C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF66B3C171186AD0033D07C /* SystemConfiguration.framework */; };
+		3DF66B3F171186BC0033D07C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF66B3E171186BC0033D07C /* AudioToolbox.framework */; };
+		3DF66B41171186F40033D07C /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF66B40171186F40033D07C /* SpeechKit.framework */; };
+		3DF66B44171187CF0033D07C /* WinstonTopicEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66B43171187CF0033D07C /* WinstonTopicEngine.m */; };
 		FC7F30A3762849AAB6F2F93F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89063CD1D96C49DE81C8E813 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +62,11 @@
 		3DF66B32171140740033D07C /* noisy_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noisy_grid.png; sourceTree = "<group>"; };
 		3DF66B38171149FE0033D07C /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CreateMethods.h"; sourceTree = "<group>"; };
 		3DF66B39171149FE0033D07C /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
+		3DF66B3C171186AD0033D07C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3DF66B3E171186BC0033D07C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3DF66B40171186F40033D07C /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = "<group>"; };
+		3DF66B42171187CF0033D07C /* WinstonTopicEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinstonTopicEngine.h; sourceTree = "<group>"; };
+		3DF66B43171187CF0033D07C /* WinstonTopicEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinstonTopicEngine.m; sourceTree = "<group>"; };
 		89063CD1D96C49DE81C8E813 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59693906444B33B812D89E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -67,10 +76,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DF66B3F171186BC0033D07C /* AudioToolbox.framework in Frameworks */,
+				3DF66B3D171186AE0033D07C /* SystemConfiguration.framework in Frameworks */,
 				3DF66AD317111EA90033D07C /* UIKit.framework in Frameworks */,
 				3DF66AD517111EA90033D07C /* Foundation.framework in Frameworks */,
 				3DF66AD717111EA90033D07C /* CoreGraphics.framework in Frameworks */,
 				FC7F30A3762849AAB6F2F93F /* libPods.a in Frameworks */,
+				3DF66B41171186F40033D07C /* SpeechKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +111,9 @@
 		3DF66AD117111EA90033D07C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DF66B40171186F40033D07C /* SpeechKit.framework */,
+				3DF66B3E171186BC0033D07C /* AudioToolbox.framework */,
+				3DF66B3C171186AD0033D07C /* SystemConfiguration.framework */,
 				3DF66AD217111EA90033D07C /* UIKit.framework */,
 				3DF66AD417111EA90033D07C /* Foundation.framework */,
 				3DF66AD617111EA90033D07C /* CoreGraphics.framework */,
@@ -197,6 +212,8 @@
 		3DF66B3B171164D70033D07C /* Voice */ = {
 			isa = PBXGroup;
 			children = (
+				3DF66B42171187CF0033D07C /* WinstonTopicEngine.h */,
+				3DF66B43171187CF0033D07C /* WinstonTopicEngine.m */,
 			);
 			name = Voice;
 			sourceTree = "<group>";
@@ -296,6 +313,7 @@
 				3DF66AFF171136680033D07C /* GestureEngine.m in Sources */,
 				3DF66B02171136860033D07C /* SnapEngine.m in Sources */,
 				3DF66B3A171149FE0033D07C /* UIColor+CreateMethods.m in Sources */,
+				3DF66B44171187CF0033D07C /* WinstonTopicEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +401,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE59693906444B33B812D89E /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HoverEvolved/HoverEvolved-Prefix.pch";
 				INFOPLIST_FILE = "HoverEvolved/HoverEvolved-Info.plist";
@@ -401,6 +423,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE59693906444B33B812D89E /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HoverEvolved/HoverEvolved-Prefix.pch";
 				INFOPLIST_FILE = "HoverEvolved/HoverEvolved-Info.plist";
