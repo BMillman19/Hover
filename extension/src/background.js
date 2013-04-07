@@ -21,11 +21,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.event == 'is_active?') {
     sendResponse(hover);
   }
-  else if (request.event == 'send_gesture') {
-    chrome.tabs.executeScript(null, {
-      code: 'Reveal.next();'
-    });
-  }
 });
 
 function toggleHover() {

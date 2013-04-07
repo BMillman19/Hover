@@ -25,6 +25,7 @@ function initSocket(channel) {
   chrome.socket = io.connect(format("%s://%s:%d/",
                                    server.protocol, server.host, server.port));
   var socket = chrome.socket;
+  socket.channel = channel;
   socket.on('connect', function() {
     // Create channel with server
     socket.emit('host_channel', channel);
@@ -40,8 +41,6 @@ function initSocket(channel) {
       // just log for now
       console.log(gesture);
       injectCode('if (HOVER_APP) { var fn = HOVER_APP["' + gesture + '"] || function() {}; fn(); }');
-      chrome.runtime.sendMessage({event: 'send_gesture', gesture: gesture}, function (resp) {
-      });
     });
   });
 }
