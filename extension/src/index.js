@@ -42,7 +42,6 @@ function initSocket(channel) {
       injectCode('if (HOVER_APP) { var fn = HOVER_APP["' + gesture + '"] || function() {}; fn(); }');
       chrome.runtime.sendMessage({event: 'send_gesture', gesture: gesture}, function (resp) {
       });
-      console.log(gesture);
     });
   });
 }
