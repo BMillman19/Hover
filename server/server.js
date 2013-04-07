@@ -1,4 +1,3 @@
-console.log(__dirname);
 var config = require('nconf').
     argv().
     env().
@@ -8,7 +7,7 @@ var config = require('nconf').
   connect = require('connect');
 
 // Set log level to info (2))
-io.set('log level', 2);
+//io.set('log level', 2);
 
 /**
  * Set up socket.io to host web socket server.
@@ -33,6 +32,7 @@ io.sockets.on('connection', function(socket) {
     // If control is connected first, create a new channel
     channels[channel] = channels[channel] || [];
     channels[channel].push(socket.id);
+    console.log('Channel [' + channel + '] connected:', channels[channel]);
   });
 
   // 3. Pipe gestures through from the controller to the extension; socket = controller
@@ -42,7 +42,7 @@ io.sockets.on('connection', function(socket) {
   //    payload: ...
   //  }
   socket.on('send_gesture', function(gesture) {
-    var channel = channels[obj.channel];
+    var channel = channels[gesture.channel];
     var target = channel[0];  // first client in channel should be the extension
     io.sockets.socket(target).emit('send_gesture', gesture.payload);
   });
