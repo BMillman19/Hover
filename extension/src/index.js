@@ -39,23 +39,7 @@ function initSocket(channel) {
     socket.on('send_gesture', function(gesture) {
       // just log for now
       console.log(gesture);
-      switch (gesture) {
-        case 'left':
-          injectCode('Reveal.right()');
-          break;
-        case 'right':
-          injectCode('Reveal.left()');
-          break;
-        case 'up':
-          injectCode('Reveal.down()');
-          break;
-        case 'down':
-          injectCode('Reveal.up()');
-          break;
-        default:
-          injectCode('Reveal.toggleOverview()');
-          break;
-      }
+      injectCode('if (HOVER_APP) { var fn = HOVER_APP["' + gesture + '"] || function() {}; fn(); }');
       chrome.runtime.sendMessage({event: 'send_gesture', gesture: gesture}, function (resp) {
       });
       console.log(gesture);
