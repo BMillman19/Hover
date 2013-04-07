@@ -63,6 +63,10 @@
     [self cleanup];
 }
 
+- (void)test {
+    [self socketDidOpen];
+}
+
 - (void)emitGesture:(GestureType)gesture {
     NSString *keyword;
     
@@ -92,7 +96,7 @@
     if (self.networkSocket) {
         [self.networkSocket sendEvent:@"send_gesture" withPayload:@{@"payload" : keyword}];
     } else {
-        NSLog(@"Trying to send something but socket is closed");
+        //NSLog(@"Trying to send something but socket is closed");
     }
 
 }
@@ -127,8 +131,8 @@
     double tail1Val_y = [[self.motionData[self.motionData.count-1] objectForKey:@"y"] doubleValue];
     double tail2Val_x = [[self.motionData[self.motionData.count-2] objectForKey:@"x"] doubleValue];
     double tail2Val_y = [[self.motionData[self.motionData.count-2] objectForKey:@"y"] doubleValue];
-    for (id obj in self.motionData)
-        NSLog(@"obj: %@", obj);
+//    for (id obj in self.motionData)
+//        NSLog(@"obj: %@", obj);
     double delta_y = 0;
     double delta_x = 0;
     
@@ -167,7 +171,7 @@
     double totalChangeX = fabs(delta_x);
     double totalChangeY = fabs(delta_y);
     
-    NSLog(@"%f, %f", totalChangeX, totalChangeY);
+    //NSLog(@"%f, %f", totalChangeX, totalChangeY);
     
     if ( totalChangeX > totalChangeY) {
         if (delta_x > 0) {
@@ -213,6 +217,7 @@
 - (void)eventOccurred:(NSString *)event withPayload:(NSDictionary *)payload {
     
 }
+
 
 - (void)socketDidOpen {
     
@@ -269,10 +274,8 @@
 #pragma mark - SnapEngineDelegate
 
 -(void) snapDidOccur {
-    if (self.networkSocket) {
-        [self emitGesture:kSnap];
-        NSLog(@"Snap!");
-    }
+    [self emitGesture:kSnap];
+    NSLog(@"Snap!");
 }
 
 @end

@@ -134,7 +134,7 @@
 
 -(IBAction)startButtonPressed:(id)sender {
     //[[GestureEngine sharedEngine] enableSocketWithCode:self.code];
-    
+    [[GestureEngine sharedEngine] test];
     [UIView animateWithDuration:0.5f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
@@ -183,6 +183,10 @@
                           ];
                      }
      ];
+}
+
+- (IBAction)testButtonPressed:(id)sender {
+    [[GestureEngine sharedEngine] test];
 }
 
 #pragma mark - ZBarReaderDelegate
@@ -267,6 +271,44 @@
 
 - (void)animateArrow:(GestureType)gesture {
     
+    FIIconView *viewToBeAnimated;
+    CGPoint newCenter;
+    
+    switch (gesture) {
+        case kLeftSwipe:
+            viewToBeAnimated = self.leftIcon;
+            newCenter = CGPointMake(viewToBeAnimated.center.x - 700, viewToBeAnimated.center.y);
+            break;
+        case kRightSwipe:
+            viewToBeAnimated = self.rightIcon;
+            newCenter = CGPointMake(viewToBeAnimated.center.x + 700, viewToBeAnimated.center.y);
+            break;
+        case kUpSwipe:
+            viewToBeAnimated = self.upIcon;
+            newCenter = CGPointMake(viewToBeAnimated.center.x, viewToBeAnimated.center.y - 400);
+            break;
+        case kDownSwipe:
+            viewToBeAnimated = self.downIcon;
+            newCenter = CGPointMake(viewToBeAnimated.center.x, viewToBeAnimated.center.y + 400);
+            break;
+        default:
+            break;
+    }
+    
+    CGPoint origCenter = viewToBeAnimated.center;
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         viewToBeAnimated.alpha = 1.0f;
+                         viewToBeAnimated.center = newCenter;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         viewToBeAnimated.alpha = 0.0f;
+                         viewToBeAnimated.center = origCenter;
+                     }
+     ];
 }
 
 @end

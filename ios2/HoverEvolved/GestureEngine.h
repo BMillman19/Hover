@@ -30,6 +30,8 @@ typedef enum {
 
 - (void)reset;
 
+- (void)test;
+
 @property (nonatomic, weak) id<GestureEngineDelegate> delegate;
 
 @end
