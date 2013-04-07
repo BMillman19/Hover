@@ -10,11 +10,15 @@
 #import "SampleBase.h"
 #import "SampleFacade.h"
 
+@class SnapEngine;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
 @public
   std::vector<SampleFacade*> allSamples;
 }
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, strong) SnapEngine *snapEngine;
 
 @end

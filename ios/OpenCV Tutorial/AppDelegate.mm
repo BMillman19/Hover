@@ -18,6 +18,11 @@
 #import "DetectTrackSample.h"
 #import "DrawingCanvas.h"
 #import "HoverSample.h"
+#import "SnapEngine.h"
+
+@interface AppDelegate () <SnapEngineDelegate>
+
+@end
 
 @implementation AppDelegate
 
@@ -41,6 +46,14 @@
     allSamples.push_back([[SampleFacade alloc] initWithSample:new HoverSample()]);
     
     // Override point for customization after application launch.
+    
+    
+    self.snapEngine = [[SnapEngine alloc] init];
+    self.snapEngine.delegate = self;
+    [self.snapEngine start];
+    
+    
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -48,6 +61,12 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     }
     return YES;
+}
+
+#pragma mark - SnapEngineDelegate
+
+-(void) snapDidOccur {
+    NSLog(@"Snap!");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -106,6 +106,8 @@
 		8AFE53CA15D7E3B200E7ADEB /* DoubleTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE53C815D7E3B200E7ADEB /* DoubleTableViewCell.mm */; };
 		8AFE53CB15D7E3B200E7ADEB /* DoubleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFE53C915D7E3B200E7ADEB /* DoubleTableViewCell.xib */; };
 		8AFE53CF15D7F18E00E7ADEB /* cvneon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE53CE15D7F18E00E7ADEB /* cvneon.cpp */; };
+		ABFCB7681710E64C00D58F10 /* SnapEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFCB7671710E64C00D58F10 /* SnapEngine.m */; };
+		ABFCB76A1710EA6A00D58F10 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFCB7691710EA6A00D58F10 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -252,6 +254,9 @@
 		8AFE53C915D7E3B200E7ADEB /* DoubleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleTableViewCell.xib; sourceTree = "<group>"; };
 		8AFE53CD15D7F18500E7ADEB /* cvneon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvneon.h; sourceTree = "<group>"; };
 		8AFE53CE15D7F18E00E7ADEB /* cvneon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cvneon.cpp; sourceTree = "<group>"; };
+		ABFCB7661710E64C00D58F10 /* SnapEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapEngine.h; sourceTree = "<group>"; };
+		ABFCB7671710E64C00D58F10 /* SnapEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapEngine.m; sourceTree = "<group>"; };
+		ABFCB7691710EA6A00D58F10 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +339,7 @@
 		8A4388591595BC4E00027D3C = {
 			isa = PBXGroup;
 			children = (
+				ABFCB7691710EA6A00D58F10 /* Default-568h@2x.png */,
 				8A43886E1595BC4F00027D3C /* OpenCV Tutorial */,
 				8A4388671595BC4F00027D3C /* Frameworks */,
 				8A4388651595BC4F00027D3C /* Products */,
@@ -372,6 +378,7 @@
 		8A43886E1595BC4F00027D3C /* OpenCV Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				ABFCB7651710E60B00D58F10 /* Snap Detection */,
 				8AFE53D015D7F19100E7ADEB /* OpenCV Neon */,
 				8AA7F84E15A462250052C95A /* View Controllers */,
 				8A723FD81599B751008C72DB /* Storyboards */,
@@ -635,6 +642,15 @@
 			name = "OpenCV Neon";
 			sourceTree = "<group>";
 		};
+		ABFCB7651710E60B00D58F10 /* Snap Detection */ = {
+			isa = PBXGroup;
+			children = (
+				ABFCB7661710E64C00D58F10 /* SnapEngine.h */,
+				ABFCB7671710E64C00D58F10 /* SnapEngine.m */,
+			);
+			name = "Snap Detection";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -730,6 +746,7 @@
 				8A66F71515DA85BA00EF1959 /* VideoTrackingSampleIcon.png in Resources */,
 				8A4C5D7615E2CAEA008887F0 /* ROFSampleIcon.png in Resources */,
 				3DF66A961710A1390033D07C /* HoverSampleIcon.png in Resources */,
+				ABFCB76A1710EA6A00D58F10 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +798,7 @@
 				8A6E0BD81614946100C1D644 /* FeatureDetectionClass.cpp in Sources */,
 				3DF66A9217109F7F0033D07C /* HoverClass.cpp in Sources */,
 				3DF66A9317109F7F0033D07C /* HoverSample.cpp in Sources */,
+				ABFCB7681710E64C00D58F10 /* SnapEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
