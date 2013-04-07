@@ -61,7 +61,7 @@
 - (void)sendEvent:(NSString *)event withPayload:(NSDictionary *)payload
 {
     NSMutableDictionary *mutableMessageDictionary = [NSMutableDictionary dictionaryWithDictionary:payload];
-    [mutableMessageDictionary setObject:event forKey:@"event"];
+    [mutableMessageDictionary setObject:self.channel forKey:@"channel"];
 
     [_socket sendEvent:event withData:mutableMessageDictionary andAcknowledge:^(id argsData){NSLog(@"Message Success");}];
 }

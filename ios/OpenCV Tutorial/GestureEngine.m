@@ -51,13 +51,18 @@
     
     NSString *channel = tokens[2];
     
+    
     self.networkSocket = [NetworkSocket socketToAddress:address withPort:port withChannel:channel withDelegate:self];
 }
+
 
 #pragma mark - SnapEngineDelegate
 
 -(void) snapDidOccur {
-    NSLog(@"Snap!");
+    if (self.networkSocket) {
+        [self.networkSocket sendEvent:@"send_gesture" withPayload:@{@"payload" : @"snap"}];
+        NSLog(@"Snap!");
+    }
 }
 
 @end
