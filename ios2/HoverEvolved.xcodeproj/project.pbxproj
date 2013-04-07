@@ -18,6 +18,14 @@
 		3DF66AE917111EA90033D07C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66AE817111EA90033D07C /* Default-568h@2x.png */; };
 		3DF66AEC17111EA90033D07C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66AEB17111EA90033D07C /* ViewController.m */; };
 		3DF66AEF17111EA90033D07C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66AED17111EA90033D07C /* ViewController.xib */; };
+		3DF66AFC171136560033D07C /* NetworkSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66AFB171136560033D07C /* NetworkSocket.m */; };
+		3DF66AFF171136680033D07C /* GestureEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66AFE171136680033D07C /* GestureEngine.m */; };
+		3DF66B02171136860033D07C /* SnapEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66B01171136860033D07C /* SnapEngine.m */; };
+		3DF66B33171140740033D07C /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66B2F171140740033D07C /* arrow2.png */; };
+		3DF66B34171140740033D07C /* arrow2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66B30171140740033D07C /* arrow2@2x.png */; };
+		3DF66B35171140740033D07C /* noisy_grid_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66B31171140740033D07C /* noisy_grid_@2X.png */; };
+		3DF66B36171140740033D07C /* noisy_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF66B32171140740033D07C /* noisy_grid.png */; };
+		3DF66B3A171149FE0033D07C /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF66B39171149FE0033D07C /* UIColor+CreateMethods.m */; };
 		FC7F30A3762849AAB6F2F93F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89063CD1D96C49DE81C8E813 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +46,18 @@
 		3DF66AEA17111EA90033D07C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3DF66AEB17111EA90033D07C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3DF66AEE17111EA90033D07C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		3DF66AFA171136560033D07C /* NetworkSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkSocket.h; sourceTree = "<group>"; };
+		3DF66AFB171136560033D07C /* NetworkSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkSocket.m; sourceTree = "<group>"; };
+		3DF66AFD171136680033D07C /* GestureEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureEngine.h; sourceTree = "<group>"; };
+		3DF66AFE171136680033D07C /* GestureEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureEngine.m; sourceTree = "<group>"; };
+		3DF66B00171136860033D07C /* SnapEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapEngine.h; sourceTree = "<group>"; };
+		3DF66B01171136860033D07C /* SnapEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapEngine.m; sourceTree = "<group>"; };
+		3DF66B2F171140740033D07C /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
+		3DF66B30171140740033D07C /* arrow2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow2@2x.png"; sourceTree = "<group>"; };
+		3DF66B31171140740033D07C /* noisy_grid_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noisy_grid_@2X.png"; sourceTree = "<group>"; };
+		3DF66B32171140740033D07C /* noisy_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noisy_grid.png; sourceTree = "<group>"; };
+		3DF66B38171149FE0033D07C /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CreateMethods.h"; sourceTree = "<group>"; };
+		3DF66B39171149FE0033D07C /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		89063CD1D96C49DE81C8E813 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59693906444B33B812D89E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -61,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				3DF66AD817111EA90033D07C /* HoverEvolved */,
+				3DF66B2E171140490033D07C /* Resources */,
 				3DF66AD117111EA90033D07C /* Frameworks */,
 				3DF66AD017111EA90033D07C /* Products */,
 				BE59693906444B33B812D89E /* Pods.xcconfig */,
@@ -89,11 +110,12 @@
 		3DF66AD817111EA90033D07C /* HoverEvolved */ = {
 			isa = PBXGroup;
 			children = (
-				3DF66AE117111EA90033D07C /* AppDelegate.h */,
-				3DF66AE217111EA90033D07C /* AppDelegate.m */,
-				3DF66AEA17111EA90033D07C /* ViewController.h */,
-				3DF66AEB17111EA90033D07C /* ViewController.m */,
-				3DF66AED17111EA90033D07C /* ViewController.xib */,
+				3DF66B3B171164D70033D07C /* Voice */,
+				3DF66B37171149DE0033D07C /* Util */,
+				3DF66AF91711356A0033D07C /* Gesture */,
+				3DF66AF81711355D0033D07C /* Network */,
+				3DF66AF61711353E0033D07C /* Application */,
+				3DF66AF71711354D0033D07C /* ViewControllers */,
 				3DF66AD917111EA90033D07C /* Supporting Files */,
 			);
 			path = HoverEvolved;
@@ -111,6 +133,72 @@
 				3DF66AE817111EA90033D07C /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DF66AF61711353E0033D07C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66AE117111EA90033D07C /* AppDelegate.h */,
+				3DF66AE217111EA90033D07C /* AppDelegate.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		3DF66AF71711354D0033D07C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66AEA17111EA90033D07C /* ViewController.h */,
+				3DF66AEB17111EA90033D07C /* ViewController.m */,
+				3DF66AED17111EA90033D07C /* ViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3DF66AF81711355D0033D07C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66AFA171136560033D07C /* NetworkSocket.h */,
+				3DF66AFB171136560033D07C /* NetworkSocket.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		3DF66AF91711356A0033D07C /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66AFD171136680033D07C /* GestureEngine.h */,
+				3DF66AFE171136680033D07C /* GestureEngine.m */,
+				3DF66B00171136860033D07C /* SnapEngine.h */,
+				3DF66B01171136860033D07C /* SnapEngine.m */,
+			);
+			name = Gesture;
+			sourceTree = "<group>";
+		};
+		3DF66B2E171140490033D07C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66B2F171140740033D07C /* arrow2.png */,
+				3DF66B30171140740033D07C /* arrow2@2x.png */,
+				3DF66B31171140740033D07C /* noisy_grid_@2X.png */,
+				3DF66B32171140740033D07C /* noisy_grid.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3DF66B37171149DE0033D07C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3DF66B38171149FE0033D07C /* UIColor+CreateMethods.h */,
+				3DF66B39171149FE0033D07C /* UIColor+CreateMethods.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		3DF66B3B171164D70033D07C /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Voice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +258,10 @@
 				3DF66AE717111EA90033D07C /* Default@2x.png in Resources */,
 				3DF66AE917111EA90033D07C /* Default-568h@2x.png in Resources */,
 				3DF66AEF17111EA90033D07C /* ViewController.xib in Resources */,
+				3DF66B33171140740033D07C /* arrow2.png in Resources */,
+				3DF66B34171140740033D07C /* arrow2@2x.png in Resources */,
+				3DF66B35171140740033D07C /* noisy_grid_@2X.png in Resources */,
+				3DF66B36171140740033D07C /* noisy_grid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +292,10 @@
 				3DF66ADF17111EA90033D07C /* main.m in Sources */,
 				3DF66AE317111EA90033D07C /* AppDelegate.m in Sources */,
 				3DF66AEC17111EA90033D07C /* ViewController.m in Sources */,
+				3DF66AFC171136560033D07C /* NetworkSocket.m in Sources */,
+				3DF66AFF171136680033D07C /* GestureEngine.m in Sources */,
+				3DF66B02171136860033D07C /* SnapEngine.m in Sources */,
+				3DF66B3A171149FE0033D07C /* UIColor+CreateMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +387,10 @@
 				GCC_PREFIX_HEADER = "HoverEvolved/HoverEvolved-Prefix.pch";
 				INFOPLIST_FILE = "HoverEvolved/HoverEvolved-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/HoverEvolved/ZBarSDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -305,6 +405,10 @@
 				GCC_PREFIX_HEADER = "HoverEvolved/HoverEvolved-Prefix.pch";
 				INFOPLIST_FILE = "HoverEvolved/HoverEvolved-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/HoverEvolved/ZBarSDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

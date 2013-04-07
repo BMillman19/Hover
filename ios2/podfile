@@ -1,3 +1,8 @@
-platform :ios
+platform :ios, '5.0'
 
-pod "GPUImage"
+pod 'GPUImage'
+pod 'socket.IO'
+pod 'JSONKit'
+pod 'ZBarSDK'
+pod 'MLPSpotlight'
+pod 'FontasticIcons', '~> 0.1.2'
