@@ -2,7 +2,22 @@ Slide 1:
 
 - The future is moving towards touchless sensing. 
 - With products like the myo gesture control armband and leap motion controller, we're exploring endless boundaries
-- But these all require new hardware - which takes both time and money to learn to develop on
+- But these all require new hardware - which takes both time and money, especially when it comes to us developers learning how to develop on it 
+- Wouldn't it be easier if we could simply use the hardware we already have?
+- Take my iPhone for example, wouldn't it be cool if while I'm giving a presentation I could just swipe my hand over the phone and have it control the slides?  
 
-But would it be easier if we could simply use the hardware we already have? 
-What can we do with what we already have?
+Slide 2:
+
+
+    <div class="step slide" data-x="-1000" data-y="-1500">
+        <q align="center">The future is moving towards touchless sensing.</q>
+        <div id="images">
+            <img src="myo.jpg" width="300" >
+            <img src="leap.jpg" width="300">
+        </div>
+        <q align="center"> What can we do with what we already have? </q> 
+    </div>
+
+    <div class="step slide" data-x="0" data-y="-1500">
+        <q align="center">Embrace your iPhone.</q>
+    </div>
