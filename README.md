@@ -1,9 +1,4 @@
-<p align="center" >
-  <img src="http://i.imgur.com/EtB6YYb.png" />
-</p>
-
-
 Hover
 =====
 
-Dat Hover
+A creation for HackDuke 2013, W0n 2nd place =(
